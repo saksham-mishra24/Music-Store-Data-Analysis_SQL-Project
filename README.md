@@ -1,61 +1,42 @@
-# Music Store Data Analysis : 
+# Project Title :  Music Store Data Analysis | Sql Server
 
-# Problem Statement : 
+# 📚 Introduction
 
-### Improve Business Insights and Performance of a Music Store.
+We have a music store that sells various music albums, tracks, and merchandise. The store operates both online and offline, serving customers worldwide.
 
-## Introduction :
+This project demonstrates data analysis skills and visualization for Music Store using SQL Server and PowerBI.
 
-#### We have a music store that sells various music albums, tracks, and merchandise. The store operates both online and offline, serving customers worldwide.
+# :exploding_head:  Problem Statement
 
-#### As a data analyst, your goal is to analyze the available data and provide insights that can help the music store improve its business operations, optimize sales, and enhance customer experience.
+Music store is losing its revenue and customers. 
 
-## Dataset :
+The management wants to fix this issue, the managing director wanted to incorporate “Business and Data Intelligence” to regain their market and revenue.
 
-The music store has a comprehensive database that contains information about albums, artists, tracks, customers, orders, and transactions. The database captures details such as album titles, track durations, artist names, genres, customer demographics, order dates, transaction amounts, and more.
+# 📚 Goal
 
-## Project Objectives:
+The goal is to analyze the available data and provide insights that can help the music store improve its business operations, optimize sales, and enhance customer experience.
 
-#### Understand Customer Behavior : 
+# 📚 Dataset 
 
-Analyze customer preferences, demographics, and purchasing patterns to gain insights into the target audience and identify potential customer segments.
+The music store has a comprehensive database that contains information about albums, artists, playlist_track ,track , customers, employee , genre , invoice_line ,invoice ,media_type ,playlist . The database captures details such as album titles, track durations, artist names, genres, customer demographics, order dates, transaction amounts, and more.
 
-#### Sales Performance Analysis :
+# 💹 Data Model
 
-Identify top-selling albums, tracks, and artists. Determine the impact of factors such as genre, artist popularity, and album release dates on sales performance.
 
-#### Inventory Management :
+<img width="594" alt="schema_diagram" src="https://github.com/saksham-mishra24/Music-Store-Data-Analysis_SQL-Project/assets/120908587/3a5ee892-1b55-4693-836e-4843487653c3">
 
-Analyze inventory data to optimize stock levels, identify slow-moving items, and ensure the availability of popular albums and merchandise.
 
-#### Pricing Analysis : 
+---------------------------------------------------------------------------------------------------------------------------
 
-Evaluate the impact of pricing strategies on sales volume and revenue. Determine optimal price points for different products and customer segments.
 
-#### Customer Segmentation : 
 
-Segment customers based on their purchasing behavior, demographics, and preferences. Develop targeted marketing strategies for each segment to improve customer engagement and loyalty.
 
-#### Geographic Analysis : 
+Here is the Metadata used in the Project - https://github.com/saksham-mishra24/Revenue-Insights_Azure-data-Factory/tree/main/Metadata
 
-Analyze sales data by region or country to identify potential growth opportunities and target specific markets with tailored marketing campaigns.
+Here is the dataset used in the video - https://github.com/saksham-mishra24/Revenue-Insights_Azure-data-Factory/tree/main/RawData
 
-#### Recommendation Engine : 
+-----------------------------------------------------------------------------------------------------------------------
 
-Develop a recommendation system that suggests relevant albums, tracks, or merchandise to customers based on their purchase history, preferences, and browsing patterns.
-
-#### Deliverables :
-
-Your deliverables should include the following:
-
-SQL Scripts: Write SQL queries to extract and manipulate data from the database to perform the required analyses and generate insights.
-
-Data Analysis Reports: Create comprehensive reports summarizing the findings and insights from your analysis. Include visualizations such as charts, graphs, and tables to present the results effectively.
-
-Recommendations: Provide actionable recommendations based on the analysis to improve business performance, customer experience, and sales.
-
-Remember to document your SQL queries, assumptions, methodologies, and any limitations encountered during the analysis.
-
-##### By leveraging the power of SQL and data analysis techniques, your project aims to provide the music store with valuable insights and actionable recommendations to enhance its business operations, drive sales growth, and improve overall customer satisfaction.
+#### By leveraging the power of SQL and data analysis techniques, your project aims to provide the music store with valuable insights and actionable recommendations to enhance its business operations, drive sales growth, and improve overall customer satisfaction.
 
 Good luck with your project!
