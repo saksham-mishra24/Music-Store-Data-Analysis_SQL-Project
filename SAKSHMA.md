@@ -527,106 +527,12 @@ ORDER BY NO_OF_CUSTOMERS DESC
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 # EMPLOYEE_ANALYSIS : -
 
 ### 1. Who is the senior most employee based on job title -
 ```sql
 SELECT  Top 1 * FROM employee$ 
 ORDER BY hire_date ASC
-```
-### 2 .Which employees have the highest sales volume?
-
-```sql
-SELECT 
-    e.employee_id,
-    e.first_name,
-    e.last_name,
-    SUM(i.total) AS total_sales
-FROM 
-    employee$ e
-JOIN 
-    customer$ c ON e.employee_id = c.support_rep_id
-JOIN 
-    invoice$ i ON c.customer_id = i.customer_id
-GROUP BY 
-    e.employee_id,
-    e.first_name,
-    e.last_name
-ORDER BY 
-    total_sales DESC;
-```
-
-# CUSTOMER_ANALYSIS : -
-
-### 1. Who are the top 10 highest-spending customers-
-```SQL
-
-SELECT 
-c.customer_id, 
-c.first_name + ' ' + c.last_name as Customer_name, 
-SUM(i.total) AS total_spending
-FROM customer$ AS c
-JOIN invoice$ AS i
-  ON c.customer_id = i.customer_id
-GROUP BY c.customer_id, c.first_name, c.last_name
-ORDER BY total_spending DESC
-```
-### 2. How many customers have made repeat purchases -
-
-```SQL
-
-SELECT COUNT(*) AS repeat_customers
-FROM (
-    SELECT customer_id
-    FROM invoice$ 
-    GROUP BY customer_id
-    HAVING COUNT(DISTINCT invoice_id) > 1
-) AS repeat_purchase_customers;
-```
-### 3. What is the average number of purchases per customer -
-
-```SQL
-SELECT AVG(purchase_count) AS average_purchases_per_customer
-FROM (
-    SELECT customer_id, COUNT(DISTINCT invoice_id) AS purchase_count
-    FROM invoice$
-    GROUP BY customer_id
-) AS customer_purchases;
-```
-### 4. Which countries have the highest number of customers -
-```SQL
-SELECT country, COUNT(*) AS customer_count
-FROM customer$
-GROUP BY country
-ORDER BY customer_count DESC
-```
-### 5. What is the distribution of customers by geographic location?
-
-```sql
-select country , state,city,count(*) from customer$
-group by country , state,city
-```
-
-### 6. Who is the best customer - 
-[ The customer who has spent the most money will be declared the best customer]
-```sql
-SELECT customer_id,SUM(total) as SPEND
-FROM invoice$
-GROUP BY customer_id
-order by SPEND desc
 ```
 
 ### 7. Write query to return the email, first name, last name, & Genre of all Rock Music listeners -
@@ -643,3 +549,69 @@ WHERE g.name LIKE 'Rock'
 )
 ORDER BY email
 ```
+
+### 2. Which artists or genres that have shown significant growth in sales over time -
+
+```sql
+SELECT 
+  ar.name AS artist_name,
+  g.name AS genre_name,
+  MIN(i.invoice_date) AS first_purchase_date,
+  MAX(i.invoice_date) AS latest_purchase_date,
+  SUM(il.quantity) AS total_sales_quantity
+FROM invoice$ AS i
+JOIN  invoice_line$ AS il ON i.invoice_id = il.invoice_id
+JOIN  track$ AS t ON il.track_id = t.track_id
+JOIN  album$ AS al ON t.album_id = al.album_id
+JOIN  artist$ AS ar ON al.artist_id = ar.artist_id
+JOIN  genre$ AS g ON t.genre_id = g.genre_id
+GROUP BY  ar.name, g.name
+ORDER BY  total_sales_quantity DESC;
+```
+
+### 4. What are the peak sales periods during the year?
+```sql
+SELECT
+  DATEPART(YEAR, invoice_date) AS year,
+  DATEPART(MONTH, invoice_date) AS month,
+  SUM(total) AS total_sales
+FROM invoice$
+GROUP BY DATEPART(YEAR, invoice_date), DATEPART(MONTH, invoice_date)
+ORDER BY  SUM(total) DESC;
+```
+
+### Command to see all tables in Databases -
+
+```sql
+
+SELECT name FROM sys.tables;
+
+```
+
+
+###  Which artists have the highest number of tracks sold?
+
+```SQL
+SELECT a.name, COUNT(c.track_id) AS track_count
+FROM artist$ a
+JOIN album$ b ON a.artist_id = b.artist_id
+JOIN track$ c ON b.album_id = c.album_id
+JOIN invoice_line$ d ON c.track_id = d.track_id
+GROUP BY a.name
+ORDER BY track_count DESC;
+```
+### 
+Which artists who have written the most rock music in our dataset. 
+[Write a query that returns the Artist name and total track count of the top 10 rock bands. ]
+
+```sql
+SELECT c.artist_id, c.name, COUNT(*) AS number_of_songs
+FROM track$ a
+JOIN album$ b ON b.album_id = a.album_id
+JOIN artist$ c ON c.artist_id = b.artist_id
+JOIN genre$ d ON d.genre_id = a.genre_id
+WHERE d.name LIKE 'Rock'
+GROUP BY c.artist_id,c.name
+ORDER BY number_of_songs DESC
+```
+
